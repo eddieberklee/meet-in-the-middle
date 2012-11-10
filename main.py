@@ -28,13 +28,11 @@ def host():
 
 @app.route("/about")
 def about():
-		return render_template('about.html')
+    return render_template('about.html')
 
 @app.route("/create_session", methods=["POST"])
 def create_session():
     try:
-        #print request.data
-        #data = json.loads(request.data)
         data = request.form
 
         session = Session()
@@ -52,7 +50,6 @@ def create_session():
 @app.route("/create_person", methods=["POST"])
 def create_person():
     try:
-        #data = json.loads(request.data)
         data = request.form
 
         session = Session.query.filter_by(session_hash=data["session_hash"]).first()
@@ -71,12 +68,16 @@ def create_person():
 
 @app.route("/<session_hash>")
 def session(session_hash):
-    return render_template('main.html')
+    try:
+        session = Session.query.filter_by(session_hash=session_hash).first()
+
+        return render_template('main.html')
+    except:
+        return render_template('error.html')
 
 @app.route("/<session_hash>/update", methods=["POST"])
 def session_update(session_hash):
     try:
-        #data = json.loads(request.data)
         data = request.form
 
         session = Session.query.filter_by(session_hash=session_hash).first()
@@ -93,14 +94,6 @@ def session_update(session_hash):
         db.session.commit()
 
         return jsonify(error=0)
-    except:
-        return jsonify(error=1)
-
-@app.route("/session/places", methods=["GET"])
-def places():
-    try:
-				places = yelp.places()
-				return jsonify(places=places, error=0)
     except:
         return jsonify(error=1)
 
@@ -130,7 +123,7 @@ def session_data(session_hash):
 
 @app.route("/<path:path>")
 def catch_all(path):
-    return "CATCH: path: %s" % path
+    return render_template('error.html')
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
