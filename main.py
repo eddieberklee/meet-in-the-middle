@@ -7,10 +7,13 @@ import random
 from flask import Flask, request, jsonify, render_template
 import json, yelp
 from flask.ext.sqlalchemy import SQLAlchemy
+import os
 
 # Flask
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://localhost/test"
+
+db_server_url = os.environ.get('DATABASE_URL', "postgresql://localhost/test")
+app.config["SQLALCHEMY_DATABASE_URI"] = db_server_url
 db = SQLAlchemy(app)
 
 from models import *
@@ -126,4 +129,5 @@ def catch_all(path):
     return "CATCH: path: %s" % path
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
