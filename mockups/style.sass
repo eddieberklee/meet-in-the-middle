@@ -18,17 +18,31 @@
   right: 15px
   @include css3-border-radius($s / 2)
 
+$d-dblue: #002635
+$d-tblue: #013440
+$d-red: #ab1a25
+$d-orange: #d97925
+$d-yellow: #efe7be
+
+.circle-dblue
+  background-color: $d-dblue
+.circle-tblue
+  background-color: $d-tblue
 .circle-red
-  background-color: #AB1A25 
- 
+  background-color: $d-red
+.circle-orange
+  background-color: $d-orange
+.circle-yellow
+  background-color: $d-yellow
+
 $share-item-s: 76px
 $share-item-m: 10px
 .center-social
   width: $share-item-s * 4 + $share-item-m * 4 + 8px
   margin: 0 auto
 
-$first_desaturate: 1%
-$second_desaturate: 2%
+$first_desaturate: 0%
+$second_desaturate: 3%
 $first_darken: 6%
 
 $blue1: lighten(#268ACC,5%)
@@ -55,11 +69,19 @@ $pyellow2: desaturate(darken($pyellow1, $first_darken),$second_desaturate)
   @include css3-linear-gradient($blue1,$blue2)
 .share-pyellow
   @include css3-linear-gradient($pyellow1,$pyellow2)
+ 
+.share-green, .share-red, .share-blue, .share-pyellow
+  @include css3-transition(all, 0.1s)
+  &:hover
+    box-shadow: inset 0px 3px 12px rgba(0,0,0,0.25)
+  &:active
+    box-shadow: inset 0px 3px 14px rgba(0,0,0,0.65)
 
 .share-item
   width: $share-item-s
   height: $share-item-s
-  line-height: $share-item-s
+  cursor: pointer
+  line-height: $share-item-s - 40px
   text-align: center
   border: 1px solid #999
   padding: 0
@@ -67,14 +89,45 @@ $pyellow2: desaturate(darken($pyellow1, $first_darken),$second_desaturate)
   float: left
   margin-left: $share-item-m
   background-color: #ddd
-  background-image: url("img/link_bg.png")
+  position: relative
+  &:hover
+    background-color: #eee
   span
     font-weight: bold
     color: #eee
-    @include css3-text-shadow(0px, 0px, 3px, rgba(0,0,0,0.6))
+    position: relative
+    z-index: 3
+    @include css3-text-shadow(0px, 0px, 7px, rgba(0,0,0,1.0))
   @include css3-border-radius(6px)
   box-shadow: inset 0px 1px 1px rgba(255,255,255,0.6)
   @include css3-user-select()
+
+.share-item-bg
+  width: $share-item-s
+  height: $share-item-s
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 2
+  overflow: hidden
+  background-repeat: no-repeat
+
+.link-bg
+  background-image: url("img/link_bg.png")
+  background-position: 0px 26px
+
+.email-bg
+  background-image: url("img/email_bg.png")
+  background-position: 0px 22px
+
+.text-bg
+  background-image: url("img/text_bg.png")
+  background-position: 0px 25px
+
+.fb-bg
+  background-image: url("img/fb_bg.png")
+  background-position: -5px 18px
+ 
 
 
 
