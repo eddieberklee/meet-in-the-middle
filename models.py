@@ -43,9 +43,9 @@ class Session(db.Model):
         self.center_lat = sum(person.lat for person in self.persons) / len(self.persons)
         self.center_lon = sum(person.lon for person in self.persons) / len(self.persons)
 
-    def set_destination(self, lat=self.center_lat, lon=self.center_lon):
-        self.dest_lat = lat
-        self.dest_lon = lon
+    def set_destination(self, lat=None, lon=None):
+        self.dest_lat = lat if lat else self.center_lat
+        self.dest_lon = lon if lon else self.center_lon
 
     def lock_destination(self):
         self.dest_locked = True
