@@ -110,10 +110,14 @@ def session_places(session_hash):
     try:
         session = Session.query.filter_by(session_hash=session_hash).first()
 
+        session.update_center()
+
+        db.session.commit()
+
         if session.dest_locked:
             places = yelp.places(point=str(session.dest_lat)+str(session.dest_lon))
         else:
-            places = yelp.places(point=str(session.center_lat)+str(session.center_lon))
+            places = yelp.places(point=str(session.center_lat) + "," + str(session.center_lon))
 
         return jsonify(places=places, error=0)
     except:

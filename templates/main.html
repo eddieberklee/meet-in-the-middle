@@ -103,10 +103,9 @@
 	<script>
 		$.ajax({
 			type : 'GET',
-			url : '/session/places',
+			url : '/' + window.location.href.replace(/.*\//, "") + '/places',
 			dataType : 'json',
 			success : function(data) {
-				console.log(data);
 				nearby_places(data);
 			},
 			error : function() {
