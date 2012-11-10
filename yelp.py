@@ -3,7 +3,7 @@
 
 import json, oauth2, urllib, urllib2
 
-def places(point="37.8717,-122.2728", category="restaurants", limit="5", sort="1", host="api.yelp.com", path="/v2/search", consumer_key="yQ_h_HeGroPZMEuAehI3ow", consumer_secret="dOp1-zgHgw-rS5AP2mGd-GXRX4U", token="RNhuKBAyXn1ASnP_bhShPA_eeyoRt25M", token_secret="5ForqC5CbV28ZcjXwMa8gvZSTF4"):
+def places(point="37.8717,-122.2728", category="restaurants", limit="5", sort="1", host="api.yelp.com", path="/v2/search", consumer_key="QiJTR2MWOMpYsWtGdDdq6Q", consumer_secret="-ow0GK_lnQ9jSBoNEK9AH85DZXM", token="nSrMPVUVRkcDA9unjmOREopRKMfN5OyP", token_secret="ij9D71EGJeohhvNdHKih3kwH9n8"):
     # URL params
     url_params = {"ll": point, "category_filter": category, "limit": limit, "sort": sort}
 
