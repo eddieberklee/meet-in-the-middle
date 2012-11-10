@@ -88,7 +88,6 @@ def session_update(session_hash):
     try:
         data = request.form
 
-        print "IN"
         session = Session.query.filter_by(session_hash=session_hash).first()
 
         if not session:
