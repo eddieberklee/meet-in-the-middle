@@ -12,9 +12,9 @@ State.poll = function(){
         var p, color;
         for ( var i = 0; i < people.length; i++){
             p = people[i];
-            color = View.map.rm;
+            color = View.rm;
             if ( p.id === State.personid ){
-                color = View.map.bm;
+                color = View.bm;
             }
             View.map.addMarker({"lat" : p.lat, "lng" : p.lon, "icon" : color});
             $("#userlist").append('<li><div class="person">'+p.name+'</div><div class="clear"></div></li>');
