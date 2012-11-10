@@ -3,13 +3,9 @@
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
 # 2012/11/10
 
-<<<<<<< HEAD
 import random
 from flask import Flask, request, jsonify, render_template
-=======
 import json, yelp
-from flask import Flask, request, jsonify
->>>>>>> bf621da4fee7bef4074b285d47682934b6361854
 from flask.ext.sqlalchemy import SQLAlchemy
 
 # Flask
