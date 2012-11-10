@@ -27,6 +27,7 @@ Handles = {
             if ( name === "" ){
                 alert("Please enter a name!");
             }else{
+                $.cookie("name", name);
                 $.ajax({
                     type : 'POST',
                     url : '/create_session',
