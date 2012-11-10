@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ratchet template page</title>
+
+    <!-- Sets initial viewport load and disables zooming  -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Set Apple icons for when prototype is saved to home screen -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="icon.css">
+    <!-- Include the compiled Ratchet CSS -->
+    <link rel="stylesheet" href="ratchet.css">
+
+    <!-- Include the compiled Ratchet JS -->
+    <script src="ratchet.js"></script>
+
+    <!-- Intro paragraph styles. Delete once you start using this page -->
+    <style type="text/css">
+        .welcome {
+          line-height: 1.5;
+          color: #555;
+        }
+    </style>
+
+  </head>
+  <body>
+
+  <!-- Make sure all your bars are the first things in your <body> -->
+  <header class="bar-title" style="box-shadow:0px 1px 15px rgba(0,0,0,0.8);">
+		<h1 class="title">Meet in the Middle</h1>
+  </header>
+
+  <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
+	
+	<div class="vspace50"></div>
+
+  <div class="content-padded">
+
+		<h1 style="text-align:center;">Error</h1>
+		
+		<div class="vspace10"></div>
+
+		<p style="font-size:1.2em;">
+			Come across an error, please try again in a few minutes or navigate using the buttons at the bottom.
+		</p>
+
+		<div class="vspace20"></div>
+
+		<div class="share-content" style="text-align:center;position:fixed;bottom:10px;">
+			<style>
+				a.button, a.button-main {
+					padding: 8px;
+					padding-left:  7px;
+					padding-right: 7px;
+				}
+			</style>
+			<a class="button">Home <i class="icon-home"></i></a>
+			<a class="button-main">Find a Location to Meet</a>
+			<a class="button">Contact Help <i class="icon-warning-sign"></i></a>
+		</div><!-- /.share-content -->
+
+		<div class="vspacel10"></div>
+
+	</div><!-- /.content -->
+
+  </body>
+</html>
