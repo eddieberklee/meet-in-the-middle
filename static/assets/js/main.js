@@ -13,7 +13,7 @@ State.poll = function(){
         for ( var i = 0; i < people.length; i++){
             p = people[i];
             color = View.rm;
-            if ( p.id === State.personid ){
+            if ( parseInt(p.id) === parseInt(State.personid) ){
                 color = View.bm;
             }
             View.map.addMarker({"lat" : p.lat, "lng" : p.lon, "icon" : color});
