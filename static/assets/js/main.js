@@ -21,6 +21,7 @@ State.poll = function(){
             //do stuff with table
         }
         View.map.addMarker({"lat" : data.center_lat, "lng" : data.center_lon});
+        View.map.setCenter(data.center_lat, data.center_lon);
     });
 };
 State.update = function(lat,lng){
