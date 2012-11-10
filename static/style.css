@@ -519,6 +519,9 @@
 .circle-yellow {
   background-color: #efe7be; }
 
+.image {
+  visibility: hidden; }
+
 .center-social {
   width: 352px;
   margin: 0 auto; }
