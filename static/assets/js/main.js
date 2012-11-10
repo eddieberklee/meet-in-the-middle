@@ -13,7 +13,7 @@ State.poll = function(){
         for ( var i = 0; i < people.length; i++){
             p = people[i];
             color = View.rm;
-            if ( p.id === State.personid ){
+            if ( parseInt(p.id) === parseInt(State.personid) ){
                 color = View.bm;
             }
             View.map.addMarker({"lat" : p.lat, "lng" : p.lon, "icon" : color});
@@ -21,6 +21,7 @@ State.poll = function(){
             //do stuff with table
         }
         View.map.addMarker({"lat" : data.center_lat, "lng" : data.center_lon});
+        View.map.setCenter(data.center_lat, data.center_lon);
     });
 };
 State.update = function(lat,lng){
