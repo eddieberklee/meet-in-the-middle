@@ -1,0 +1,80 @@
+// sass
+@import "sass_mixins/css3_mixins"
+@import "sass_mixins/vspace_num"
+
+.clear
+  clear: both
+
+.person
+  float: left
+  line-height: 0
+
+.circle
+  $s: 16px
+  width: $s
+  height: $s
+  margin-top: -7px
+  position: absolute
+  right: 15px
+  @include css3-border-radius($s / 2)
+
+.circle-red
+  background-color: #AB1A25 
+ 
+$share-item-s: 76px
+$share-item-m: 10px
+.center-social
+  width: $share-item-s * 4 + $share-item-m * 4 + 8px
+  margin: 0 auto
+
+$first_desaturate: 1%
+$second_desaturate: 2%
+$first_darken: 6%
+
+$blue1: lighten(#268ACC,5%)
+$blue1: desaturate($blue1,$first_desaturate)
+$blue2:  desaturate(darken($blue1,      $first_darken),$second_desaturate)
+
+$green1: lighten(saturate(#359F00,20%),5%)
+$green1: desaturate($green1,$first_desaturate)
+$green2: desaturate(darken($green1,     $first_darken),$second_desaturate)
+
+$red1: lighten(saturate(#ab1a25,5%),12%)
+$red1: desaturate($red1,$first_desaturate)
+$red2:   desaturate(darken($red1,       $first_darken),$second_desaturate)
+
+$pyellow1: #555
+$pyellow1: desaturate($pyellow1,$first_desaturate)
+$pyellow2: desaturate(darken($pyellow1, $first_darken),$second_desaturate)
+
+.share-green
+  @include css3-linear-gradient($green1,$green2)
+.share-red
+  @include css3-linear-gradient($red1,$red2)
+.share-blue
+  @include css3-linear-gradient($blue1,$blue2)
+.share-pyellow
+  @include css3-linear-gradient($pyellow1,$pyellow2)
+
+.share-item
+  width: $share-item-s
+  height: $share-item-s
+  line-height: $share-item-s
+  text-align: center
+  border: 1px solid #999
+  padding: 0
+  margin: 0
+  float: left
+  margin-left: $share-item-m
+  background-color: #ddd
+  background-image: url("img/link_bg.png")
+  span
+    font-weight: bold
+    color: #eee
+    @include css3-text-shadow(0px, 0px, 3px, rgba(0,0,0,0.6))
+  @include css3-border-radius(6px)
+  box-shadow: inset 0px 1px 1px rgba(255,255,255,0.6)
+  @include css3-user-select()
+
+
+
