@@ -6,7 +6,12 @@
 
 # Temporary vim files
 *.swp
+*.swo
+*.swn
 
 # Compiled Python files
 *.pyc
 __pycache__
+
+# Sass Cache
+.sass_cache
