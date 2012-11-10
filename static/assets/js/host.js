@@ -38,6 +38,7 @@ Handles = {
                             throw Error("Server blew up");
                         }else{
                             $.cookie("uid", data.id);
+                            $.cookie("session", data.session_hash);
                             window.location = ROOT_DOMAIN+'/'+data.session_hash;
                         }
                     },

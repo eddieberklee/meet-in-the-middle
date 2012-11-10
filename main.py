@@ -3,11 +3,9 @@
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
 # 2012/11/10
 
-import random
+import json, os, random, yelp
 from flask import Flask, request, jsonify, render_template
-import json, yelp
 from flask.ext.sqlalchemy import SQLAlchemy
-import os
 
 # Flask
 app = Flask(__name__)
@@ -29,6 +27,14 @@ def host():
 @app.route("/about")
 def about():
     return render_template('about.html')
+
+@app.route("/help")
+def about():
+    return render_template('help.html')
+
+@app.route("/faq")
+def about():
+    return render_template('help.html')
 
 @app.route("/create_session", methods=["POST"])
 def create_session():
@@ -102,10 +108,14 @@ def session_places(session_hash):
     try:
         session = Session.query.filter_by(session_hash=session_hash).first()
 
+        session.update_center()
+
+        db.session.commit()
+
         if session.dest_locked:
             places = yelp.places(point=str(session.dest_lat)+str(session.dest_lon))
         else:
-            places = yelp.places(point=str(session.center_lat)+str(session.center_lon))
+            places = yelp.places(point=str(session.center_lat) + "," + str(session.center_lon))
 
         return jsonify(places=places, error=0)
     except:

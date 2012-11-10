@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Meet in the middle</title>
+    <title>Meet in the Middle</title>
 
     <!-- Sets initial viewport load and disables zooming  -->
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -78,7 +78,7 @@
 
 		<div style="width:277px;margin:0 auto;">
 			<input id="link" type="text" style="width:277px;">
-			<a href="mailto:222&subject=Let's Meet in the Middle!&body=Click on the link below to add yourself and let's find a place to Meet in the Middle!" class="button-negative">Email <i class="icon-envelope icon-white"></i></a>
+			<a href="javascript:mail()" class="button-negative">Email <i class="icon-envelope icon-white"></i></a>
 			<a href="sms:" class="button-positive">SMS <i class="icon-comment icon-white"></i></a>
 			<a class="button-main">Facebook <i class="icon-book icon-white"></i></a>
 		<div>
@@ -101,12 +101,14 @@
 	<script type="text/javascript" src="static/assets/js/main.js"></script>
 	<script type="text/javascript" src="static/assets/js/places.js"></script>
 	<script>
+    function mail() {
+      document.location.href = "mailto:?subject=Meet in the Middle&body=" + window.location.href;
+    }
 		$.ajax({
 			type : 'GET',
-			url : '/session/places',
+			url : '/' + window.location.href.replace(/.*\//, "") + '/places',
 			dataType : 'json',
 			success : function(data) {
-				console.log(data);
 				nearby_places(data);
 			},
 			error : function() {
