@@ -23,6 +23,10 @@ def root():
 def host():
     return render_template('host.html')
 
+@app.route("/about")
+def about():
+		return render_template('about.html')
+
 @app.route("/create_session", methods=["POST"])
 def create_session():
     try:
