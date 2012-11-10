@@ -34,6 +34,10 @@ def about():
 def about():
     return render_template('help.html')
 
+@app.route("/faq")
+def about():
+    return render_template('help.html')
+
 @app.route("/create_session", methods=["POST"])
 def create_session():
     try:
