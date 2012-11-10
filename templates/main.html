@@ -10,6 +10,7 @@
     <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
 
     <!-- Set Apple icons for when prototype is saved to home screen -->
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/touch-icons/apple-touch-icon-114x114.png">
@@ -113,6 +114,21 @@
 			}
 		});
 		$("input#link").attr('value',window.location.href);
+		function hideAddressBar()
+		{
+		  if(!window.location.hash)
+		  {
+		      if(document.height < window.outerHeight)
+		      {
+		          document.body.style.height = (window.outerHeight + 50) + 'px';
+		      }
+		
+		      setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
+		  }
+		}
+		
+		window.addEventListener("load", function(){ if(!window.pageYOffset){ hideAddressBar(); } } );
+		window.addEventListener("orientationchange", hideAddressBar );
 	</script>
   </body>
 </html>
