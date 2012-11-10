@@ -66,9 +66,10 @@ Handles = {
         View.create(lat,lng);
         State.personid = $.cookie('uid');
         State.name = $.cookie('name');
+        State.session = $.cookie('session');
         State.lat = lat;
         State.lng = lng;
-        if (State.personid === null ){
+        if (State.personid === null || State.session !== window.location.pathname.substr(1,5)){
             State.name = prompt("Enter your name:");
             $.ajax({
                 type : 'POST',
@@ -78,6 +79,7 @@ Handles = {
                 success : function(data){
                     $.cookie('name', State.name);
                     $.cookie('uid', data.id);
+                    $.cookie('session', window.location.pathname.substr(window.location.pathname.substr(1,5));
                     State.personid = data.id;
                     $('#myname').text(State.name);
                     State.cont();
