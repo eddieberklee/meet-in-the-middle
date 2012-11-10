@@ -50,7 +50,7 @@ State.cont = function(){
                     if (data.error === 1 ){
                         throw Error("shit");
                     }else{
-                        setInterval(State.poll, 1000);
+                        setInterval(State.poll, 5000);
                     }
                 },
                 error : function(){
@@ -65,12 +65,11 @@ Handles = {
         var lat = position.coords.latitude,
             lng = position.coords.longitude;
         View.create(lat,lng);
-        State.personid = $.cookie('uid');
+        State.personid = $.cookie(window.location.pathname.substr(1,5));
         State.name = $.cookie('name');
-        State.session = $.cookie('session');
         State.lat = lat;
         State.lng = lng;
-        if (State.personid === null || State.session !== window.location.pathname.substr(1,5)){
+        if (State.personid === null ){
             State.name = prompt("Enter your name:");
             $.ajax({
                 type : 'POST',
@@ -79,8 +78,7 @@ Handles = {
                 data : { "session_hash" : window.location.pathname.substr(1,5), "name" : State.name, "lat" : lat, "lon" : lng},
                 success : function(data){
                     $.cookie('name', State.name);
-                    $.cookie('uid', data.id);
-                    $.cookie('session', window.location.pathname.substr(1,5));
+                    $.cookie(window.location.pathname.substr(1,5), data.id);
                     State.personid = data.id;
                     $('#myname').text(State.name);
                     State.cont();
