@@ -19,7 +19,26 @@ Handles = {
         View.update(lat,lng);
     }, create : function(){
         //handle for submitting creation to /create
+        var name;
         if (bool){
+            name = $('#name').val();
+            if ( name === "" ){
+                alert("Please enter a name!");
+            }else{
+                $.ajax({
+                    type : 'POST',
+                    url : '/create_session',
+                    dataType : 'json',
+                    data : '{"name": '+name+',"lat": '+View.lat+', "lon":View.lng}',
+                    success : function(data){
+                    //TODO: finish and load new page
+                        console.log(data);
+                    },
+                    error : function(){
+                        alert("Invalid server request");
+                    }
+                });
+            }
         }
     }
 };
