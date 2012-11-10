@@ -30,6 +30,6 @@ def results(location="2599 Hearst Ave, Berkeley, CA 94709", radius="800", catego
 
         results = response["businesses"]
 
-        return {"results": [{"address": str(result["location"]["address"][0] + ", " + result["location"]["city"] + ", " + result["location"]["state_code"] + " " + result["location"]["postal_code"]), "name": str(result["name"])} for result in results]}
+        return {"results": [{"address": str(result["location"]["address"][0]), "name": str(result["name"])} for result in results]}
     except:
         return None
