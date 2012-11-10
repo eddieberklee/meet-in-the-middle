@@ -68,6 +68,8 @@ def session(session_hash):
         person.lat = float(request.form["lat"])
         person.lon = float(request.form["lon"])
 
+        session.update_center()
+
         db.session.commit()
 
         return jsonify(error=0)
@@ -80,7 +82,7 @@ def session(session_hash):
         session = db.session.query.filter_by(session_hash=session_hash).first()
         persons = [person.json() for person in session.persons]
 
-        return jsonify(persons=persons, centroid=session.centroid, lat=session.lat, lon=session.lon, error=0)
+        return jsonify(persons=persons, center_lat=session.center_lat, center_lon=session.center_lon, dest_lat=session.dest_lat, dest_lon=session.dest_lon, dest_locked=session.dest_locked, error=0)
     except:
         return jsonify(error=1)
 
