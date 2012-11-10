@@ -65,8 +65,8 @@ Handles = {
         var lat = position.coords.latitude,
             lng = position.coords.longitude;
         View.create(lat,lng);
-        State.personid = $.cookie(window.location.pathname.substr(1,5));
-        State.name = $.cookie('name');
+        State.personid = $.cookie(window.location.pathname.substr(1,5)+"id");
+        State.name = $.cookie(window.location.pathname.substr(1,5)+'name');
         State.lat = lat;
         State.lng = lng;
         if (State.personid === null ){
@@ -77,8 +77,8 @@ Handles = {
                 dataType : 'json',
                 data : { "session_hash" : window.location.pathname.substr(1,5), "name" : State.name, "lat" : lat, "lon" : lng},
                 success : function(data){
-                    $.cookie('name', State.name);
-                    $.cookie(window.location.pathname.substr(1,5), data.id);
+                    $.cookie(window.location.pathname.substr(1,5)+'name', State.name);
+                    $.cookie(window.location.pathname.substr(1,5)+'id', data.id);
                     State.personid = data.id;
                     $('#myname').text(State.name);
                     State.cont();
