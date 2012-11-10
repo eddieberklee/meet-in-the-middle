@@ -20,7 +20,7 @@ State.poll = function(){
             $("#userlist").append('<li><div class="person">'+p.name+'</div><div class="clear"></div></li>');
             //do stuff with table
         }
-        View.map.addMarker({"lat" : data.center_lat, "lng" : data.center_lng});
+        View.map.addMarker({"lat" : data.center_lat, "lng" : data.center_lon});
     });
 };
 State.update = function(lat,lng){
