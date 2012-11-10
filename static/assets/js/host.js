@@ -1,5 +1,5 @@
 // Handler functions
-var ROOT_DOMAIN = "http://localhost:5000/";
+var ROOT_DOMAIN = window.location.origin;
 Handles = {
     bool : false,
     success : function(position){
@@ -38,7 +38,7 @@ Handles = {
                             throw Error("Server blew up");
                         }else{
                             $.cookie("uid", data.id);
-                            window.location = ROOT_DOMAIN+data.session_hash;
+                            window.location = ROOT_DOMAIN+'/'+data.session_hash;
                         }
                     },
                     error : function(){

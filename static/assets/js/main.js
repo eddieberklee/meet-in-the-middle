@@ -1,10 +1,43 @@
 // Handler functions
-var ROOT_DOMAIN = "http://localhost:5000/";
+var ROOT_DOMAIN = window.location.origin;
 var State = {};
 State.poll = function(){
     $.getJSON(window.location.pathname+'/data', function(data){
-        console.log(data);
+        //draw shit
+        View.map.removeMarkers();
+        $("#userlist").html("");
+        $("#userlist").append('<li class="list-divider">Joined:</li>');
+        //clear table
+        var people = data.persons;
+        var p, color;
+        for ( var i = 0; i < people.length; i++){
+            p = people[i];
+            color = View.map.rm;
+            if ( p.id === State.personid ){
+                color = View.map.bm;
+            }
+            View.map.addMarker({"lat" : p.lat, "lng" : p.lon, "icon" : color});
+            $("#userlist").append('<li><div class="person">'+p.name+'</div><div class="clear"></div></li>');
+            //do stuff with table
+        }
+        View.map.addMarker({"lat" : data.center_lat, "lng" : data.center_lng});
     });
+};
+State.update = function(lat,lng){
+    State.lat = lat;
+    State.lng = lng;
+            $.ajax({
+                type : 'POST',
+                url : window.location.pathname+'/update',
+                dataType : 'json',
+                data : { "id" : State.personid, "lat" : State.lat, "lon" : State.lng},
+                success : function(data){
+                    return;
+                },
+                error : function(){
+                    alert("Error with server");
+                }
+            });
 };
 State.cont = function(){
             $.ajax({
@@ -23,6 +56,7 @@ State.cont = function(){
                     alert("Error with server");
                 }
             });
+            navigator.geolocation.watchPosition(State.update, Handles.error, {enableHighAccuracy    : true, maximumAge:1000*3});
 };
 
 Handles = {
@@ -46,6 +80,7 @@ Handles = {
                     $.cookie('name', State.name);
                     $.cookie('uid', data.id);
                     State.personid = data.id;
+                    $('#myname').text(State.name);
                     State.cont();
                 },
                 error : function(){
@@ -53,6 +88,7 @@ Handles = {
                 }
             });
         }else{
+            $('#myname').text(State.name);
             State.cont();
         }
         //navigator.geolocation.watchPosition(Handles.watch, Handles.error, {enableHighAccuracy: true, maximumAge:1000*3});
@@ -73,6 +109,7 @@ Handles = {
 };
 
 View = {
+    map : null,
     bm : new google.maps.MarkerImage("static/mapimg/marker.png", new google.maps.Size(50,50), new google.maps.Point(0,0), new google.maps.Point(25,25)),
     rm : new google.maps.MarkerImage("static/mapimg/rmarker.png", new google.maps.Size(50,50), new google.maps.Point(0,0), new google.maps.Point(25,25)),
     create : function(lat, lng){
