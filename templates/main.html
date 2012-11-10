@@ -110,8 +110,11 @@
 			dataType : 'json',
 			success : function(data) {
 				nearby_places(data);
-        $(".place").hover(function() {
-          $(this).siblings('.image').show();
+        $(".place").click(function() {
+          $(this).siblings('.image').attr('visibility','visible');
+        },
+        function() {
+          $(this).siblings('.image').attr('visibility','hidden');
         });
 			},
 			error : function() {
