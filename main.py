@@ -92,9 +92,8 @@ def session_update(session_hash):
 @app.route("/session/places", methods=["GET"])
 def places():
     try:
-				# places = yelp.places(point=str(session.dest_lat)+str(session.dest_lon))
-       	places = yelp.places()
-        return jsonify(places=places, error=0)
+				places = yelp.places()
+				return jsonify(places=places, error=0)
     except:
         return jsonify(error=1)
 

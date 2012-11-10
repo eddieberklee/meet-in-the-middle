@@ -19,6 +19,7 @@ Handles = {
         State.name = $.cookie('name');
         if (State.personid === null ){
             State.name = prompt("Enter your name:");
+						$("h1").text(State.name);
             $.ajax({
                 type : 'POST',
                 url : '/create_person',
