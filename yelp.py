@@ -1,5 +1,5 @@
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
-# 2012/11/09
+# 2012/11/10
 
 import json, oauth2, urllib, urllib2
 
@@ -30,6 +30,6 @@ def results(location="2599 Hearst Ave, Berkeley, CA 94709", radius="800", catego
 
         results = response["businesses"]
 
-        return [(str(result["name"]), str(result["location"]["address"][0])) for result in results]
-    except urllib2.HTTPError, error:
+        return {"results": [{"address": str(result["location"]["address"][0]), "name": str(result["name"])} for result in results]}
+    except:
         return None
