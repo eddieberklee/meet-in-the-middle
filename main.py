@@ -13,5 +13,13 @@ app = Flask(__name__)
 def root():
     return "Hello, world!"
 
+@app.route("/<sid>")
+def session(sid):
+    return "Session: %s" % sid
+
+@app.route("/<path:path>")
+def catch_all(path):
+    return "Path: %s" % path
+
 if __name__ == "__main__":
     app.run()
