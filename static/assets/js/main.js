@@ -7,7 +7,22 @@ State.poll = function(){
     });
 };
 State.cont = function(){
-    //begin polling
+            $.ajax({
+                type : 'POST',
+                url : window.location.pathname+'/update',
+                dataType : 'json',
+                data : { "id" : State.personid, "lat" : State.lat, "lon" : State.lng},
+                success : function(data){
+                    if (data.error === 1 ){
+                        throw Error("shit");
+                    }else{
+                        setInterval(State.poll, 1000);
+                    }
+                },
+                error : function(){
+                    alert("Error with server");
+                }
+            });
 };
 
 Handles = {
@@ -17,6 +32,8 @@ Handles = {
         View.create(lat,lng);
         State.personid = $.cookie('uid');
         State.name = $.cookie('name');
+        State.lat = lat;
+        State.lng = lng;
         if (State.personid === null ){
             State.name = prompt("Enter your name:");
             $.ajax({

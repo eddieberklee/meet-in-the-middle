@@ -25,7 +25,7 @@ class Person(db.Model):
         return {"id": self.id, "name": self.name, "lat": self.lat, "lon": self.lon}
 
     def __repr__(self):
-        return "<Person %r>" % self.person_hash
+        return "<Person %r>" % self.id
 
 class Session(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -40,8 +40,8 @@ class Session(db.Model):
         self.session_hash = ''.join(random.choice(hash_chars) for x in range(length))
 
     def update_center(self):
-        self.center_lat = sum(person.lat for person in self.persons) / len(self.persons)
-        self.center_lon = sum(person.lon for person in self.persons) / len(self.persons)
+        self.center_lat = sum(float(person.lat) for person in self.persons) / len(self.persons.all())
+        self.center_lon = sum(float(person.lon) for person in self.persons) / len(self.persons.all())
 
     def set_destination(self, lat=None, lon=None):
         self.dest_lat = lat if lat else self.center_lat

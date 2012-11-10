@@ -77,7 +77,7 @@ def session_update(session_hash):
         if not session:
             raise ValueError
 
-        person = Person.query.filter_by(id=data["id"]).first()
+        person =  Person.query.filter_by(id=int(data["id"])).first()
         person.lat = float(data["lat"])
         person.lon = float(data["lon"])
 
@@ -107,9 +107,7 @@ def session_places(session_hash):
 def session_data(session_hash):
     try:
         session = Session.query.filter_by(session_hash=session_hash).first()
-        print session
         persons = [person.json() for person in session.persons]
-        print persons
 
         return jsonify(persons=persons, center_lat=session.center_lat, center_lon=session.center_lon, dest_lat=session.dest_lat, dest_lon=session.dest_lon, dest_locked=session.dest_locked, error=0)
     except:
