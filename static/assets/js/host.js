@@ -1,16 +1,19 @@
 // Handler functions
+console.log('reached');
 Handles = {
     bool : false,
     success : function(position){
+        console.log("reached");
         var lat = position.coords.latitude,
             lng = position.coords.longitude;
-        View.create();
-        //navigator.geolocation.watchPosition(Handles.watch, Handles.error, {enableHighAccuracy: true, maximumAge:1000*3});
+        View.create(lat,lng);
+        navigator.geolocation.watchPosition(Handles.watch, Handles.error, {enableHighAccuracy: true, maximumAge:1000*3});
     },
     error : function(position){
         alert("Error: Geolocationing not enabled.");
     },
     watch : function(position){
+        console.log("watching");
         var lat = position.coords.latitude,
             lng = position.coords.longitude;
         //View.map must be instantiated
@@ -32,11 +35,12 @@ Handles = {
                     data : '{"name": '+name+',"lat": '+View.lat+', "lon":View.lng}',
                     success : function(data){
                     //TODO: finish and load new page
+                        console.log("data");
                         console.log(data);
                         if (data.error == 1)
                             throw Error("Server blew up");
-                        //data.session_hash;
-                        //data.id;
+                        var a = data.session_hash;
+                        var b = data.id;
                         $.cookie("uid", data.id);
                     },
                     error : function(){
@@ -52,8 +56,10 @@ Handles = {
 View = {
     map : undefined,
     mark : undefined,
-    bm : new google.maps.MarkerImage("./img/marker.png", new google.maps.Size(50,50), new google.maps.Point(0,0), new google.maps.Point(25,25)),
+    //bm : new google.maps.MarkerImage("static/mapimg/marker.png", new google.maps.Size(50,50), new google.maps.Point(0,0), new google.maps.Point(25,25)),
     create : function(lat, lng){
+        console.log("reached");
+        console.log(lat, lng);
         this.map = new GMaps({
             div: '#map',
             lat: lat,
@@ -66,6 +72,7 @@ View = {
         this.mark.setPosition(new google.maps.LatLng(lat,lng));
     }
 };
+console.log('reached');
 
 //Launch Localization
 if (navigator.geolocation) {

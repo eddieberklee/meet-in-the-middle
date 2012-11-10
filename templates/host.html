@@ -12,23 +12,28 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Set Apple icons for when prototype is saved to home screen -->
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/touch-icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/touch-icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/touch-icons/apple-touch-icon-57x57.png">
 
     <!-- Include the compiled Ratchet CSS -->
-    <link rel="stylesheet" href="ratchet.css">
+    <link rel="stylesheet" href="static/ratchet.css">
 
     <!-- Include the compiled Ratchet JS -->
-    <script src="ratchet.js"></script>
-
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="icon.css">
+    <!--<script src="static/ratchet.js"></script>-->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script type="text/javascript" src="https://raw.github.com/HPNeo/gmaps/master/gmaps.js"></script>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/icon.css">
     <!-- Intro paragraph styles. Delete once you start using this page -->
     <style type="text/css">
         .welcome {
           line-height: 1.5;
           color: #555;
+        }
+        #map{
+        	height: 300px;
         }
     </style>
 
@@ -58,7 +63,8 @@
     </div>
 		-->
 
-		<iframe width="380" height="350" style="margin-left:10px;" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/?ie=UTF8&amp;t=h&amp;ll=37.870788,-122.301006&amp;spn=0.047428,0.068665&amp;z=13&amp;output=embed"></iframe>
+		<!-- MAP -->
+		<div id="map"></div>
 		<div class="content-padded">
 			<a class="button-block button-main">Find My Friends</a>
 		</div>
@@ -90,6 +96,6 @@
 		</ul><!-- /.list /inset -->
 
 	</div><!-- /.content -->
-
+	<script type="text/javascript" src="static/assets/js/host.js"></script>
   </body>
 </html>

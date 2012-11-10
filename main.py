@@ -4,7 +4,7 @@
 # 2012/11/10
 
 import random
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 import json
 
@@ -17,9 +17,11 @@ from models import *
 
 @app.route("/")
 def root():
-    # TODO
+    return render_template('splash.html')
 
-    return "ROOT: Hello, world!"
+@app.route("/host")
+def host():
+    return render_template('host.html')
 
 @app.route("/create_session", methods=["POST"])
 def create_session():
