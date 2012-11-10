@@ -6,6 +6,7 @@
 import random
 from flask import Flask, request, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
+import json
 
 # Flask
 app = Flask(__name__)
@@ -23,32 +24,36 @@ def root():
 @app.route("/create_session", methods=["POST"])
 def create_session():
     try:
+        data = json.loads(request.data)
+
         session = Session()
         db.session.add(session)
 
-        host = Person(session, request.form["name"], request.form["lat"], request.form["lon"])
+        host = Person(session, data["name"], data["lat"], data["lon"])
         db.session.add(host)
 
         db.session.commit()
 
-        return jsonify(session.session_hash, host.id, error=0)
-    except:
-        return jsonify(error=1)
+        return jsonify(session_hash=session.session_hash, id=host.id, error=0)
+    except Exception as e:
+        return jsonify(error=1, msg=str(e))
 
 @app.route("/create_person", methods=["POST"])
 def create_person():
     try:
-        session = Session.query.filter_by(session_hash=request.form["session_hash"]).first()
+        data = json.loads(request.data)
+
+        session = Session.query.filter_by(session_hash=data["session_hash"]).first()
 
         if not session:
             raise ValueError
 
-        person = Person(session, request.form["name"], request.form["lat"], request.form["lon"])
+        person = Person(session, data["name"], data["lat"], data["lon"])
         db.session.add(person)
 
         db.session.commit()
 
-        return jsonify(person.id, error=0)
+        return jsonify(id=person.id, error=0)
     except:
         return jsonify(error=1)
 
@@ -59,14 +64,16 @@ def session(session_hash):
 @app.route("/<session_hash>/update", methods=["POST"])
 def session(session_hash):
     try:
+        data = json.loads(request.data)
+
         session = db.session.query.filter_by(session_hash=session_hash).first()
 
         if not session:
             raise ValueError
 
-        person = Person.query.filter_by(id=request.form["id"]).first()
-        person.lat = float(request.form["lat"])
-        person.lon = float(request.form["lon"])
+        person = Person.query.filter_by(id=data["id"]).first()
+        person.lat = float(data["lat"])
+        person.lon = float(data["lon"])
 
         session.update_center()
 
@@ -76,7 +83,7 @@ def session(session_hash):
     except:
         return jsonify(error=1)
 
-@app.route("/<session_hash>/data", methods=["POST"])
+@app.route("/<session_hash>/data", methods=["GET"])
 def session(session_hash):
     try:
         session = db.session.query.filter_by(session_hash=session_hash).first()
@@ -91,4 +98,4 @@ def catch_all(path):
     return "CATCH: path: %s" % path
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
