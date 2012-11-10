@@ -1,0 +1,12 @@
+# Nikita Kouevda, Eddie Lee, Anthony Sutardja
+# 2012/11/09
+
+# OS X
+.DS_Store
+
+# Temporary vim files
+*.swp
+
+# Compiled Python files
+*.pyc
+__pycache__
