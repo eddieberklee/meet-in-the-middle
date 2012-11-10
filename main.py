@@ -3,10 +3,14 @@
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
 # 2012/11/10
 
+<<<<<<< HEAD
 import random
 from flask import Flask, request, jsonify, render_template
+=======
+import json, yelp
+from flask import Flask, request, jsonify
+>>>>>>> bf621da4fee7bef4074b285d47682934b6361854
 from flask.ext.sqlalchemy import SQLAlchemy
-import json
 
 # Flask
 app = Flask(__name__)
@@ -64,7 +68,7 @@ def session(session_hash):
     return "SESSION: hash: %s" % session_hash
 
 @app.route("/<session_hash>/update", methods=["POST"])
-def session(session_hash):
+def session_update(session_hash):
     try:
         data = json.loads(request.data)
 
@@ -85,8 +89,22 @@ def session(session_hash):
     except:
         return jsonify(error=1)
 
+@app.route("/<session_hash>/places", methods=["GET"])
+def session_places(session_hash):
+    try:
+        session = db.session.query.filter_by(session_hash=session_hash).first()
+
+        if session.dest_locked:
+            places = yelp.places(point=str(session.dest_lat)+str(session.dest_lon))
+        else:
+            places = yelp.places(point=str(session.center_lat)+str(session.center_lon))
+
+        return jsonify(places=places, error=0)
+    except:
+        return jsonify(error=1)
+
 @app.route("/<session_hash>/data", methods=["GET"])
-def session(session_hash):
+def session_data(session_hash):
     try:
         session = db.session.query.filter_by(session_hash=session_hash).first()
         persons = [person.json() for person in session.persons]

@@ -3,9 +3,9 @@
 
 import json, oauth2, urllib, urllib2
 
-def results(location="2599 Hearst Ave, Berkeley, CA 94709", radius="800", category="restaurants", limit="5", sort="2", host="api.yelp.com", path="/v2/search", consumer_key="X7e6zliG8gBvtgy_2wf9Aw", consumer_secret="RJjzuCabr65kHqiH7JxhNk3K-H4", token="5tnxLUliPPENIFMtrTpQUDrgtbuu3Ukw", token_secret="lQ51AJSBQfpMuJ8gxT7eVD7ZRQw"):
+def places(point="37.8717,-122.2728", radius="800", category="restaurants", limit="5", sort="2", host="api.yelp.com", path="/v2/search", consumer_key="X7e6zliG8gBvtgy_2wf9Aw", consumer_secret="RJjzuCabr65kHqiH7JxhNk3K-H4", token="5tnxLUliPPENIFMtrTpQUDrgtbuu3Ukw", token_secret="lQ51AJSBQfpMuJ8gxT7eVD7ZRQw"):
     # URL params
-    url_params = {"location": location, "radius_filter": radius, "category_filter": category, "limit": limit, "sort": sort}
+    url_params = {"ll": point, "radius_filter": radius, "category_filter": category, "limit": limit, "sort": sort}
 
     # Encoded params
     encoded_params = urllib.urlencode(url_params)
@@ -30,6 +30,6 @@ def results(location="2599 Hearst Ave, Berkeley, CA 94709", radius="800", catego
 
         results = response["businesses"]
 
-        return {"results": [{"address": str(result["location"]["address"][0]), "name": str(result["name"])} for result in results]}
+        return [{"address": str(result["location"]["address"][0]), "name": str(result["name"])} for result in results]
     except:
         return None
