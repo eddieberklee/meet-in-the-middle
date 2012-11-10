@@ -110,6 +110,9 @@
 			dataType : 'json',
 			success : function(data) {
 				nearby_places(data);
+        $(".place").hover(function() {
+          $(this).siblings('.image').show();
+        });
 			},
 			error : function() {
 				alert("Invalid server request");
