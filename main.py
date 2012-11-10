@@ -69,7 +69,7 @@ def create_person():
 @app.route("/<session_hash>")
 def session(session_hash):
     try:
-        session = Session.query.filter_by(session_hash=data["session_hash"]).first()
+        session = Session.query.filter_by(session_hash=session_hash).first()
 
         return render_template('main.html')
     except:
