@@ -10,6 +10,7 @@ State.poll = function(){
         //clear table
         var people = data.persons;
         var p, color;
+        var arr = [];
         for ( var i = 0; i < people.length; i++){
             p = people[i];
             color = View.rm;
@@ -18,10 +19,12 @@ State.poll = function(){
             }
             View.map.addMarker({"lat" : p.lat, "lng" : p.lon, "icon" : color});
             $("#userlist").append('<li><div class="person">'+p.name+'</div><div class="clear"></div></li>');
+            arr.push(new google.maps.LatLng(p.lat, p.lon));
             //do stuff with table
         }
         View.map.addMarker({"lat" : data.center_lat, "lng" : data.center_lon});
-        View.map.setCenter(data.center_lat, data.center_lon);
+        //View.map.setCenter(data.center_lat, data.center_lon);
+        View.map.fitZoom(arr);
     });
 };
 State.update = function(lat,lng){
