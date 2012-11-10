@@ -79,7 +79,7 @@ Handles = {
                 success : function(data){
                     $.cookie('name', State.name);
                     $.cookie('uid', data.id);
-                    $.cookie('session', window.location.pathname.substr(window.location.pathname.substr(1,5));
+                    $.cookie('session', window.location.pathname.substr(1,5));
                     State.personid = data.id;
                     $('#myname').text(State.name);
                     State.cont();
