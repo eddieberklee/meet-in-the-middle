@@ -1,5 +1,5 @@
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
-# 2012/11/09
+# 2012/11/10
 
 import random
 from string import ascii_letters, digits
@@ -36,16 +36,16 @@ class Session(db.Model):
     dest_lon = db.Column(db.Float)
     dest_locked = db.Column(db.Boolean)
 
-    def __init__(self):
+    def __init__(self, length=5):
         self.session_hash = ''.join(random.choice(hash_chars) for x in range(length))
 
     def update_center(self):
         self.center_lat = sum(person.lat for person in self.persons) / len(self.persons)
         self.center_lon = sum(person.lon for person in self.persons) / len(self.persons)
 
-    def set_destination(self, lat=self.center_lat, lon=self.center_lon):
-        self.dest_lat = lat
-        self.dest_lon = lon
+    def set_destination(self, lat=None, lon=None):
+        self.dest_lat = lat if lat else self.center_lat
+        self.dest_lon = lon if lon else self.center_lon
 
     def lock_destination(self):
         self.dest_locked = True
