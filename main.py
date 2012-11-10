@@ -89,6 +89,14 @@ def session_update(session_hash):
     except:
         return jsonify(error=1)
 
+@app.route("/session/places", methods=["GET"])
+def places():
+    try:
+				places = yelp.places()
+				return jsonify(places=places, error=0)
+    except:
+        return jsonify(error=1)
+
 @app.route("/<session_hash>/places", methods=["GET"])
 def session_places(session_hash):
     try:

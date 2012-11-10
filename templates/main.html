@@ -75,15 +75,18 @@
 
 		<div class="vspace10"></div>
 
+		<ul id="nearby_places_list" class="list inset" style="width: 260px;margin: 0 auto;">
+			<li class="list-divider">Nearby Places:</li>
+		</ul><!-- /.list /.inset -->
+
 		<ul class="list inset" style="width: 260px;margin: 0 auto;">
 			<li class="list-divider">Joined:</li>
-
 			<li><div class="person">Jonathan Song</div><div class="circle circle-dblue"></div><div class="clear"></div></li>
 			<li><div class="person">Grant Losapio</div><div class="circle circle-tblue"></div><div class="clear"></div></li>
 			<li><div class="person">William Byun</div><div class="circle circle-red"></div><div class="clear"></div></li>
 			<li><div class="person">Derek Bonett</div><div class="circle circle-orange"></div><div class="clear"></div></li>
 			<li><div class="person">Eugene Kim</div><div class="circle circle-yellow"></div><div class="clear"></div></li>
-		</ul>
+		</ul><!-- /.list /.inset -->
 		<div class="vspace80"></div>
 
 		<div class="vspace25"></div>
@@ -91,7 +94,7 @@
 		<nav class="bar-tab" style="height:80px;">
 		<div class="center-social" style="width:100%;height:86px;padding-top:5px;position:fixed;box-shadow:0px -2px 7px rgba(0,0,0,0.2);">
 
-			<div style="width:320px;margin:0 auto;">
+			<div style="width:380px;margin:0 auto;">
 				<div class="share-item share-pyellow">
 					<span>link</span>
 					<div class="share-item-bg link-bg"></div>
@@ -117,6 +120,21 @@
 		</nav>
 
 	</div><!-- /.content -->
-<script type="text/javascript" src="static/assets/js/main.js"></script>
+	<script type="text/javascript" src="static/assets/js/main.js"></script>
+	<script type="text/javascript" src="static/assets/js/places.js"></script>
+	<script>
+		$.ajax({
+			type : 'GET',
+			url : '/session/places',
+			dataType : 'json',
+			success : function(data) {
+				console.log(data);
+				nearby_places(data);
+			},
+			error : function() {
+				alert("Invalid server request");
+			}
+		});
+	</script>
   </body>
 </html>
