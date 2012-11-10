@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
-# 2012/11/09
+# 2012/11/10
 
 import random
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
 
 # Flask

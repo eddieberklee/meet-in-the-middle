@@ -1,5 +1,5 @@
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
-# 2012/11/09
+# 2012/11/10
 
 import random
 from string import ascii_letters, digits
@@ -36,7 +36,7 @@ class Session(db.Model):
     dest_lon = db.Column(db.Float)
     dest_locked = db.Column(db.Boolean)
 
-    def __init__(self):
+    def __init__(self, length=5):
         self.session_hash = ''.join(random.choice(hash_chars) for x in range(length))
 
     def update_center(self):

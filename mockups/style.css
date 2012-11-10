@@ -616,15 +616,18 @@
   left: 0;
   z-index: 2;
   overflow: hidden;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  opacity: 0.6; }
 
 .link-bg {
   background-image: url("img/link_bg.png");
-  background-position: 0px 26px; }
+  background-position: 0px 26px;
+  opacity: 0.4; }
 
 .email-bg {
   background-image: url("img/email_bg.png");
-  background-position: 0px 22px; }
+  background-position: 0px 22px;
+  opacity: 0.8; }
 
 .text-bg {
   background-image: url("img/text_bg.png");
