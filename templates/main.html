@@ -108,10 +108,10 @@
 	<script>
     $(function() {
     $("#map-zoom-out").click(function() {
-      alert('zoom!');
+      State.zoom();
     });
     $("#map-center").click(function() {
-      alert('center!');
+      State.center();
     });
     function mail() {
       document.location.href = "mailto:?subject=Meet in the Middle&body=" + window.location.href;
