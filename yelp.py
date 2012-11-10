@@ -3,9 +3,9 @@
 
 import json, oauth2, urllib, urllib2
 
-def places(point="37.8717,-122.2728", radius="800", category="restaurants", limit="5", sort="2", host="api.yelp.com", path="/v2/search", consumer_key="yQ_h_HeGroPZMEuAehI3ow", consumer_secret="dOp1-zgHgw-rS5AP2mGd-GXRX4U", token="RNhuKBAyXn1ASnP_bhShPA_eeyoRt25M", token_secret="5ForqC5CbV28ZcjXwMa8gvZSTF4"):
+def places(point="37.8717,-122.2728", category="restaurants", limit="5", sort="1", host="api.yelp.com", path="/v2/search", consumer_key="yQ_h_HeGroPZMEuAehI3ow", consumer_secret="dOp1-zgHgw-rS5AP2mGd-GXRX4U", token="RNhuKBAyXn1ASnP_bhShPA_eeyoRt25M", token_secret="5ForqC5CbV28ZcjXwMa8gvZSTF4"):
     # URL params
-    url_params = {"ll": point, "radius_filter": radius, "category_filter": category, "limit": limit, "sort": sort}
+    url_params = {"ll": point, "category_filter": category, "limit": limit, "sort": sort}
 
     # Encoded params
     encoded_params = urllib.urlencode(url_params)
