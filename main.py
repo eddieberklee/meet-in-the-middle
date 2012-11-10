@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
-# 2012/10/02
+# 2012/11/09
 
 import random
 from flask import Flask, render_template, request, jsonify
