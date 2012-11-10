@@ -64,7 +64,7 @@ def create_person():
 
 @app.route("/<session_hash>")
 def session(session_hash):
-    return "SESSION: hash: %s" % session_hash
+    return render_template('main.html')
 
 @app.route("/<session_hash>/update", methods=["POST"])
 def session_update(session_hash):

@@ -12,17 +12,21 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <!-- Set Apple icons for when prototype is saved to home screen -->
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/touch-icons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/touch-icons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/touch-icons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png">
 
-    <link rel="stylesheet" href="static/style.css">
-    <link rel="stylesheet" href="static/icon.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="icon.css">
     <!-- Include the compiled Ratchet CSS -->
-    <link rel="stylesheet" href="static/ratchet.css">
+    <link rel="stylesheet" href="ratchet.css">
 
     <!-- Include the compiled Ratchet JS -->
-    <script src="static/ratchet.js"></script>
+    <!--<script src="ratchet.js"></script>-->
+<script type="text/javascript" src="static/assets/js/jquery.js"></script>
+<script type="text/javascript" src="static/assets/js/gmaps.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="static/assets/js/jquery.cookie.js"></script>
 
     <!-- Intro paragraph styles. Delete once you start using this page -->
     <style type="text/css">
@@ -73,12 +77,14 @@
 			<li><div class="person">Derek Bonett</div><div class="circle circle-orange"></div><div class="clear"></div></li>
 			<li><div class="person">Eugene Kim</div><div class="circle circle-yellow"></div><div class="clear"></div></li>
 		</ul>
+		<div class="vspace80"></div>
 
 		<div class="vspace25"></div>
 
-		<div class="center-social" style="width:100%;height:86px;padding-top:5px;position:fixed;background-color:#fff;box-shadow:0px -2px 7px rgba(0,0,0,0.2);">
+		<nav class="bar-tab" style="height:80px;">
+		<div class="center-social" style="width:100%;height:86px;padding-top:5px;position:fixed;box-shadow:0px -2px 7px rgba(0,0,0,0.2);">
 
-			<div style="width:365px;margin:0 auto;">
+			<div style="width:320px;margin:0 auto;">
 				<div class="share-item share-pyellow">
 					<span>link</span>
 					<div class="share-item-bg link-bg"></div>
@@ -100,9 +106,10 @@
 				</div><!-- /.share-item -->
 				<div class="clear"></div>
 			<div>
-		</div>
+		</div><!-- /.center-social -->
+		</nav>
 
 	</div><!-- /.content -->
-
+<script type="text/javascript" src="static/assets/js/main.js"></script>
   </body>
 </html>
