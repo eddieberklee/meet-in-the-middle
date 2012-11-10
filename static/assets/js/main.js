@@ -1,6 +1,8 @@
 // Handler functions
 var ROOT_DOMAIN = window.location.origin;
 var State = {};
+State.arr = [];
+State.virgin = true;
 State.poll = function(){
     $.getJSON(window.location.pathname+'/data', function(data){
         //draw shit
@@ -10,7 +12,7 @@ State.poll = function(){
         //clear table
         var people = data.persons;
         var p, color;
-        var arr = [];
+        State.arr = [];
         for ( var i = 0; i < people.length; i++){
             p = people[i];
             color = View.rm;
@@ -19,13 +21,24 @@ State.poll = function(){
             }
             View.map.addMarker({"lat" : p.lat, "lng" : p.lon, "icon" : color});
             $("#userlist").append('<li><div class="person">'+p.name+'</div><div class="clear"></div></li>');
-            arr.push(new google.maps.LatLng(p.lat, p.lon));
+            State.arr.push(new google.maps.LatLng(p.lat, p.lon));
             //do stuff with table
         }
         View.map.addMarker({"lat" : data.center_lat, "lng" : data.center_lon});
+        State.cx = data.center_lat;
+        State.cy = data.center_lon;
         //View.map.setCenter(data.center_lat, data.center_lon);
-        View.map.fitZoom(arr);
+        if (State.virgin){
+            State.virgin = false;
+            View.map.fitZoom(State.arr);
+        }
     });
+};
+State.zoom = function(){
+        View.map.fitZoom(State.arr);
+};
+State.center = function(){
+        View.map.setCenter(State.cx, State.cy);
 };
 State.update = function(lat,lng){
     State.lat = lat;
