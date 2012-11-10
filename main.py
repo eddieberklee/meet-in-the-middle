@@ -26,7 +26,9 @@ def host():
 @app.route("/create_session", methods=["POST"])
 def create_session():
     try:
-        data = json.loads(request.data)
+        #print request.data
+        #data = json.loads(request.data)
+        data = request.form
 
         session = Session()
         db.session.add(session)
@@ -43,7 +45,8 @@ def create_session():
 @app.route("/create_person", methods=["POST"])
 def create_person():
     try:
-        data = json.loads(request.data)
+        #data = json.loads(request.data)
+        data = request.form
 
         session = Session.query.filter_by(session_hash=data["session_hash"]).first()
 
@@ -66,7 +69,8 @@ def session(session_hash):
 @app.route("/<session_hash>/update", methods=["POST"])
 def session_update(session_hash):
     try:
-        data = json.loads(request.data)
+        #data = json.loads(request.data)
+        data = request.form
 
         session = db.session.query.filter_by(session_hash=session_hash).first()
 
