@@ -72,7 +72,7 @@ def session_update(session_hash):
         #data = json.loads(request.data)
         data = request.form
 
-        session = db.session.query.filter_by(session_hash=session_hash).first()
+        session = Session.query.filter_by(session_hash=session_hash).first()
 
         if not session:
             raise ValueError
@@ -92,7 +92,7 @@ def session_update(session_hash):
 @app.route("/<session_hash>/places", methods=["GET"])
 def session_places(session_hash):
     try:
-        session = db.session.query.filter_by(session_hash=session_hash).first()
+        session = Session.query.filter_by(session_hash=session_hash).first()
 
         if session.dest_locked:
             places = yelp.places(point=str(session.dest_lat)+str(session.dest_lon))
@@ -106,8 +106,10 @@ def session_places(session_hash):
 @app.route("/<session_hash>/data", methods=["GET"])
 def session_data(session_hash):
     try:
-        session = db.session.query.filter_by(session_hash=session_hash).first()
+        session = Session.query.filter_by(session_hash=session_hash).first()
+        print session
         persons = [person.json() for person in session.persons]
+        print persons
 
         return jsonify(persons=persons, center_lat=session.center_lat, center_lon=session.center_lon, dest_lat=session.dest_lat, dest_lon=session.dest_lon, dest_locked=session.dest_locked, error=0)
     except:

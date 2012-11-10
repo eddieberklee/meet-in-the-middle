@@ -1,7 +1,13 @@
 // Handler functions
 var ROOT_DOMAIN = "http://localhost:5000/";
 var State = {};
+State.poll = function(){
+    $.getJSON(window.location.pathname+'/data', function(data){
+        console.log(data);
+    });
+};
 State.cont = function(){
+    //begin polling
 };
 
 Handles = {
@@ -12,13 +18,15 @@ Handles = {
         State.personid = $.cookie('uid');
         State.name = $.cookie('name');
         if (State.personid === null ){
-            State.name = prompt();
+            State.name = prompt("Enter your name:");
             $.ajax({
                 type : 'POST',
                 url : '/create_person',
                 dataType : 'json',
-                data : { "session_hash" : window.location.pathname.substr(1,5), "name" : State.name, "lat" : lat, "lon" : lon},
+                data : { "session_hash" : window.location.pathname.substr(1,5), "name" : State.name, "lat" : lat, "lon" : lng},
                 success : function(data){
+                    $.cookie('name', State.name);
+                    $.cookie('uid', data.id);
                     State.personid = data.id;
                     State.cont();
                 },

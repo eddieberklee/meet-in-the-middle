@@ -27,6 +27,7 @@ Handles = {
             if ( name === "" ){
                 alert("Please enter a name!");
             }else{
+                $.cookie("name", name);
                 $.ajax({
                     type : 'POST',
                     url : '/create_session',
@@ -37,7 +38,6 @@ Handles = {
                             throw Error("Server blew up");
                         }else{
                             $.cookie("uid", data.id);
-                            $.cookie("name", name);
                             window.location = ROOT_DOMAIN+data.session_hash;
                         }
                     },
