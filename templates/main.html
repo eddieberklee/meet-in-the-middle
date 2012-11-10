@@ -78,7 +78,7 @@
 
 		<div style="width:277px;margin:0 auto;">
 			<input id="link" type="text" style="width:277px;">
-			<a href="mailto:" class="button-negative">Email <i class="icon-envelope icon-white"></i></a>
+			<a href="javascript:mail()" class="button-negative">Email <i class="icon-envelope icon-white"></i></a>
 			<a href="sms:" class="button-positive">SMS <i class="icon-comment icon-white"></i></a>
 			<a class="button-main">Facebook <i class="icon-book icon-white"></i></a>
 		<div>
@@ -101,6 +101,9 @@
 	<script type="text/javascript" src="static/assets/js/main.js"></script>
 	<script type="text/javascript" src="static/assets/js/places.js"></script>
 	<script>
+    function mail() {
+      document.location.href = "mailto:?subject=Meet in the Middle&body=" + window.location.href;
+    }
 		$.ajax({
 			type : 'GET',
 			url : '/' + window.location.href.replace(/.*\//, "") + '/places',
