@@ -1,3 +1,6 @@
+# Nikita Kouevda, Eddie Lee, Anthony Sutardja
+# 2012/11/10
+
 Flask==0.9
 Flask-SQLAlchemy==0.16
 Jinja2==2.6

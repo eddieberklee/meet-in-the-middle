@@ -3,11 +3,9 @@
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
 # 2012/11/10
 
-import random
+import json, os, random, yelp
 from flask import Flask, request, jsonify, render_template
-import json, yelp
 from flask.ext.sqlalchemy import SQLAlchemy
-import os
 
 # Flask
 app = Flask(__name__)

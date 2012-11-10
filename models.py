@@ -54,4 +54,4 @@ class Session(db.Model):
         self.dest_locked = False
 
     def __repr__(self):
-        return "<Session %r>" % self.session_hash
+        return "<Session %r: %r>" % (self.id, self.session_hash)
