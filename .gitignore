@@ -1,17 +1,15 @@
 # Nikita Kouevda, Eddie Lee, Anthony Sutardja
-# 2012/11/10
-venv
-# OS X
+# 2013/01/31
+
+# OS X Finder
 .DS_Store
 
-# Temporary vim files
+# Temporary Vim files
 *.swp
-*.swo
-*.swn
 
 # Compiled Python files
 *.pyc
 __pycache__
 
-# Sass Cache
+# Sass cache
 .sass-cache
