@@ -1,6 +1,6 @@
 <!-- Nikita Kouevda, Eddie Lee, Anthony Sutardja -->
-<!-- 2012/11/10 -->
+<!-- 2013/04/16 -->
 
-# csua-hack
+# Meet in the Middle
 
 Meet in the Middle is designed to find an optimal meeting place for you and your friends.
